@@ -1,36 +1,55 @@
 <div class="podcast-player">
   <style>
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background: lightgray;
+    }
     .main-player {
       background-color: green;
+    }
+    .cover-image {
+      width: 120px;
+      height: 120px;
     }
   </style>
   <audio></audio>
 
-  <h2>Foobar</h2>
-  <div class="main-player">
-    <img class="cover-image" pp-src="coverUrl" />
-
-    <div class="controls">
-      <button class="play-button"></button>
+  <div class="main-player" style="display: flex; padding: 20px; background: white;">
+    <div style="flex: 0; margin-right: 20px;">
+      <img class="cover-image" pp-src="coverUrl" />
     </div>
-
-    <div class="episode-basic-info">
-      <div class="episode-title">
-        <a pp-if="url" pp-href="url" target="_parent">{ title }</a>
-        <span pp-unless="url">{ title }</a>
+    <div style="flex: 1; display: flex; flex-direction: column;">
+      <div class="episode-basic-info" style="flex: 0;">
+        <div class="episode-title" style="margin-bottom: 10px; margin-top: 5px; color: #009;">
+          <a pp-if="url" pp-href="url" target="_parent" style="font-size: 20px; font-weight: bold;">{ title }</a>
+          <!--<span pp-unless="url">{ title }</span>-->
+        </div>
       </div>
-      <div class="episode-subtitle">{ subtitle }</div>
+
+      <div style="flex: 1;">
+        <div class="episode-subtitle">{ subtitle }</div>
+      </div>
+
+      <div style="display: flex; align-items: center; flex: 0;">
+        <div class="controls" style="margin-right: 15px; flex: 0; background: #009; min-width: 50px; min-height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center;">
+          <button class="play-button" style="background: transparent; border-left: 18px solid white; border-top: 12px solid transparent; border-bottom: 12px solid transparent; border-right: none; display: block; padding: 0;"></button>
+        </div>
+    
+        <div class="controls-advanced" style="flex: 1; display: flex; align-items: center;">
+          <button class="backward-button" title="Backward 10s" style="margin-right: 10px; flex: 0; display: inline-block; min-width: 20px; min-height: 20px; border: none; background: red;"></button>
+          <progressbar style="flex: 1; height: 10px; background: blue;"></progressbar>
+          <button class="forward-button" title="Forward 30s" style="margin-left: 10px; flex: 0; display: inline-block; min-width: 20px; min-height: 20px; border: none; background: green;"></button>
+          <!--button class="speed-toggle" title="Playback speed">1x</button-->
+        </div>
+    
+        <div class="buttons"></div>
+    
+        </div>
     </div>
-
-    <div class="controls-advanced">
-      <button class="backward-button" title="Backward 10s"></button>
-      <button class="forward-button" title="Forward 30s"></button>
-      <button class="speed-toggle" title="Playback speed">1x</button>
-    </div>
-
-    <div class="buttons"></div>
-
-    <progressbar/>
   </div>
 
   <div class="panels"></div>
