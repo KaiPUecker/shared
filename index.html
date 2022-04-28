@@ -88,79 +88,125 @@
     border-radius: 10px;
     transform: translateY(-50%);
 }
-
+/*--------------------------------------------*/
+.main-player {
+  display: flex;
+  padding: 20px;
+  background: white;
+}
+.main-player__left {
+  flex: 0;
+  margin-right: 20px;
+}
+.main-player__right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  max-height: 120px;
+}
+.episode-basic-info {
+  flex: 0;
+}
+.episode-title {
+  margin-bottom: 10px;
+  margin-top: 5px;
+  color: #009;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+.episode-title > a {
+  font-size: 20px;
+  font-weight: bold;
+}
+.episode-subtitle__container {
+  flex: 1;
+}
+.controls__container {
+  display: flex;
+  align-items: center;
+  flex: 0;
+}
+.controls {
+  margin-right: 15px;
+  flex: 0;
+  background: #009;
+  min-width: 50px;
+  min-height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.play-button {
+  transform: translateX(2px);
+  background: transparent;
+  border-left: 18px solid white;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-right: none;
+  display: block;
+  padding: 0;
+}
+.backward-button {
+  margin-right: 10px;
+  flex: 0;
+  display: inline-flex;
+  min-width: 30px;
+  min-height: 30px;
+  border: none;
+  background: transparent;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.75em;
+}
+.forward-button {
+  margin-left: 10px;
+  flex: 0;
+  display: inline-flex;
+  min-width: 30px;
+  min-height: 30px;
+  border: none;
+  background: transparent;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.75em;
+}
+.progressbar {
+  flex: 1;
+  height: 10px;
+  background: blue;
+}
   </style>
 
-  <!--
-  <audio></audio>
-
-  <div class="main-player" style="display: flex; padding: 20px; background: white;">
-    <div style="flex: 0; margin-right: 20px;">
-      <img class="cover-image" pp-src="coverUrl | scale 90" pp />
-    </div>
-    <div style="flex: 1; display: flex; flex-direction: column; max-height: 120px;">
-      <div class="episode-basic-info" style="flex: 0;">
-        <div class="episode-title" style="margin-bottom: 10px; margin-top: 5px; color: #009; font-size: 1.2em; font-weight: bold;">
-          <a pp-if="url" pp-href="url" target="_parent" style="font-size: 20px; font-weight: bold;" >{{'title' | t}}</a>
-          <span pp-unless="url">{{'title' | t}}</span>
-        </div>
-      </div>
-
-      <div style="flex: 1;">
-        <div class="episode-subtitle">{{'subtitle' | t}}</div>
-      </div>
-
-      <div style="display: flex; align-items: center; flex: 0;">
-        <div class="controls" style="margin-right: 15px; flex: 0; background: #009; min-width: 50px; min-height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center;">
-          <button class="play-button" style="transform: translateX(2px); background: transparent; border-left: 18px solid white; border-top: 12px solid transparent; border-bottom: 12px solid transparent; border-right: none; display: block; padding: 0;"></button>
-        </div>
-    
-        <div class="controls-advanced" style="flex: 1; display: flex; align-items: center;">
-          <button class="backward-button" title="Backward 10s" style="margin-right: 10px; flex: 0; display: inline-flex; min-width: 30px; min-height: 30px; border: none; background: transparent; justify-content: center; align-items: center; font-size: 1.75em;"></button>
-          <progressbar style="flex: 1; height: 10px; background: blue;"></progressbar>
-          <button class="forward-button" title="Forward 30s" style="margin-left: 10px; flex: 0; display: inline-flex; min-width: 30px; min-height: 30px; border: none; background: transparent; justify-content: center; align-items: center; font-size: 1.75em;"></button>
-          < ! --button class="speed-toggle" title="Playback speed">1x</button - - >
-        </div>
-    
-        <div class="buttons"></div>
-    
-        </div>
-    </div>
-  </div>
-
-  <div class="panels"></div>
-</div>-->
-
-<!------------------------------------------------>
-
+<!-- Rivet.js is used here, instead of 'rv-...' we have 'pp-...' -->
 <div class="podcast-player">
   <audio></audio>
 
-  <div class="main-player" style="display: flex; padding: 20px; background: white;">
-    <div style="flex: 0; margin-right: 20px;">
+  <div class="main-player">
+    <div class="main-player__left">
       <img class="cover-image" pp-src="coverUrl | scale 90" pp />
     </div>
-    <div style="flex: 1; display: flex; flex-direction: column; max-height: 120px;">
-      <div class="episode-basic-info" style="flex: 0;">
-        <div class="episode-title" style="margin-bottom: 10px; margin-top: 5px; color: #009; font-size: 1.2em; font-weight: bold;">
-          <a pp-href="url" pp-if="url" pp-html="title" target="_parent" style="font-size: 20px; font-weight: bold;"></a>
+    <div class="main-player__right">
+      <div class="episode-basic-info">
+        <div class="episode-title">
+          <a pp-href="url" pp-if="url" pp-html="title" target="_parent"></a>
           <span pp-unless="url" pp-html="title"></span>
         </div>
       </div>
 
-      <div style="flex: 1;">
+      <div class="episode-subtitle__container">
         <div class="episode-subtitle" pp-html="subtitle"></div>
       </div>
 
-      <div style="display: flex; align-items: center; flex: 0;">
-        <div class="controls" style="margin-right: 15px; flex: 0; background: #009; min-width: 50px; min-height: 50px; border-radius: 50%; display: flex; justify-content: center; align-items: center;">
-          <button class="play-button" pp-aria-label="translations.playPause" pp-title="translations.playPause" style="transform: translateX(2px); background: transparent; border-left: 18px solid white; border-top: 12px solid transparent; border-bottom: 12px solid transparent; border-right: none; display: block; padding: 0;"></button>
+      <div class="controls__container">
+        <div class="controls">
+          <button class="play-button" pp-aria-label="translations.playPause" pp-title="translations.playPause"></button>
         </div>
     
         <div class="controls-advanced" style="flex: 1; display: flex; align-items: center;">
-          <button class="backward-button" pp-title="translations.backward" pp-aria-label="translations.backward" style="margin-right: 10px; flex: 0; display: inline-flex; min-width: 30px; min-height: 30px; border: none; background: transparent; justify-content: center; align-items: center; font-size: 1.75em;"></button>
-          <progressbar style="flex: 1; height: 10px; background: blue;"></progressbar>
-          <button class="forward-button" pp-title="translations.forward" pp-aria-label="translations.forward" style="margin-left: 10px; flex: 0; display: inline-flex; min-width: 30px; min-height: 30px; border: none; background: transparent; justify-content: center; align-items: center; font-size: 1.75em;"></button>
+          <button class="backward-button" pp-title="translations.backward" pp-aria-label="translations.backward"></button>
+          <progressbar class="progressbar"></progressbar>
+          <button class="forward-button" pp-title="translations.forward" pp-aria-label="translations.forward"></button>
           <!--
           <select class="speed-select" pp-title="translations.changePlaybackSpeed" pp-aria-label="translations.changePlaybackSpeed">
             <option value="0.5">0.5x</option>
