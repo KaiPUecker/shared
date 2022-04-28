@@ -1,13 +1,27 @@
 <div class="podcast-player">
   <style>
+.podcast-player {
+  --pp-color-background: #fff; /*Bechtle/colorLight*/
+  --pp-color-lightGray: #dbdcde; /*Bechtle/colorGrayDB*/
+  --pp-color-darkGray: #939393; /*Bechtle/colorGray93*/
+  --pp-color-primary: #155195; /*Bechtle/colorZukunftsblau*/
+  --pp-progressbar-size: 5px;
+  --pp-progressbar-slideButton: 16px;
+  --pp-padding-large: 20px;
+  --pp-padding-medium: 10px;
+  --pp-small-buttonSize: 30px;
+}
+
+
+
 .main-player {
   display: flex;
-  padding: 20px;
-  background: white;
+  padding: var(--pp-padding-large);
+  background: var(--pp-color-background);
 }
 .main-player__left {
   flex: 0;
-  margin-right: 20px;
+  margin-right: var(--pp-padding-large);
 }
 .main-player__right {
   flex: 1;
@@ -26,7 +40,7 @@
   flex: 0;
 }
 .episode-title {
-  margin-bottom: 10px;
+  margin-bottom: var(--pp-padding-medium);
   margin-top: 5px;
   color: #009;
   font-size: 1.2em;
@@ -44,73 +58,58 @@
   align-items: center;
   flex: 0;
 }
-.controls {
-  margin-right: 15px;
-  flex: 0;
-  background: #009;
+.play-button {
+  justify-content: center;
+  align-items: center;
   min-width: 50px;
   min-height: 50px;
   border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.play-button {
-  transform: translateX(2px);
-  background: transparent;
-  border-left: 18px solid white;
-  border-top: 12px solid transparent;
-  border-bottom: 12px solid transparent;
-  border-right: none;
+  border: none;
+  background: var(--pp-color-primary);
   display: block;
   padding: 0;
+  margin-right: 10px;
 }
 .play-button::before {
-  content: none !important;
+  font-size: 3em;
+  color: var(--pp-color-background);
+}
+.backward-button,
+.forward-button {
+  flex: 0;
+  display: inline-flex;
+  min-width: var(--pp-small-buttonSize);
+  min-height: var(--pp-small-buttonSize);
+  border: none;
+  background: transparent;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.75em;
 }
 .backward-button {
-  margin-right: 10px;
-  flex: 0;
-  display: inline-flex;
-  min-width: 30px;
-  min-height: 30px;
-  border: none;
-  background: transparent;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.75em;
+  margin-right: var(--pp-padding-medium);
 }
 .forward-button {
-  margin-left: 10px;
-  flex: 0;
-  display: inline-flex;
-  min-width: 30px;
-  min-height: 30px;
-  border: none;
-  background: transparent;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.75em;
+  margin-left: var(--pp-padding-medium);
 }
 .progress-bar {
   position: relative;
   flex: 1;
-  height: 10px;
-  background: blue;
+  height: var(--pp-padding-medium);
 }
 .progress-bar-time-played {
   display: inline-block;
 }
 .progress-bar-rail {
   width: 100%;
-  height: 5px;
-  background-color: lightgray;
+  height: var(--pp-progressbar-size);
+  background-color: var(--pp-color-lightGray);
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
 }
 .progress-bar-loaded {
-  background-color: gray;
+  background-color: var(--pp-color-darkGray);
   height: 100%;
   display: block;
   position: absolute;
@@ -118,7 +117,7 @@
   left: 0;
 }
 .progress-bar-played {
-  background-color: #009;
+  background-color: var(--pp-color-primary);
   height: 100%;
   display: block;
   position: absolute;
@@ -129,24 +128,12 @@
   content: '';
   position: absolute;
   display: inline-block;
-  right: -8px;
+  right: calc(var(--pp-progressbar-slideButton) * 0.5 * -1);
   top: 50%;
-  width: 16px;
-  height: 16px;
-  background-color: #009;
-  border-radius: 8px;
-  transform: translateY(-50%);
-}
-span.progress-bar-played::after {
-  content: '';
-  position: absolute;
-  display: inline-block;
-  right: -10px;
-  top: 50%;
-  width: 20px;
-  height: 20px;
-  background-color: green;
-  border-radius: 10px;
+  width: var(--pp-progressbar-slideButton);
+  height: var(--pp-progressbar-slideButton);
+  background-color: var(--pp-color-primary);
+  border-radius: calc(var(--pp-progressbar-slideButton) * 0.5);
   transform: translateY(-50%);
 }
 .time.progress-bar-time-played.time-played {
