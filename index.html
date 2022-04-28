@@ -1,94 +1,5 @@
 <div class="podcast-player">
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
-      background: lightgray;
-    }
-    .main-player {
-      background-color: green;
-    }
-    .cover-image {
-      width: 120px;
-      height: 120px;
-    }
-    .play-button::before {
-      content: none !important;
-    }
-    .progress-bar {
-      flex: 1;
-      position: relative;
-    }
-    .progress-bar-time-played {
-      display: inline-block;
-    }
-    .progress-bar-rail {
-      width: 100%;
-      height: 5px;
-      background-color: lightgray;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-    .time.progress-bar-time-played.time-played {
-      position: absolute;
-      right: 0;
-      top: 50%;
-      transform: translateY(calc(-50% + 1em + 5px));
-    }
-    .time.progress-bar-time-played.time-remaining {
-      position: absolute;
-      right: 0;
-      top: 50%;
-      transform: translateY(calc(-50% + 1em + 5px));
-    }
-    .progress-bar-loaded {
-      background-color: gray;
-      height: 100%;
-      display: block;
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-    .progress-bar-played {
-      background-color: #009;
-      height: 100%;
-      display: block;
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-    .progress-bar-played::after {
-      content: '';
-      position: absolute;
-      display: inline-block;
-      right: -8px;
-      top: 50%;
-      width: 16px;
-      height: 16px;
-      background-color: #009;
-      border-radius: 8px;
-      transform: translateY(-50%);
-    }
-    .buttons {
-      display: none;
-    }
-    span.progress-bar-played::after {
-    content: '';
-    position: absolute;
-    display: inline-block;
-    right: -10px;
-    top: 50%;
-    width: 20px;
-    height: 20px;
-    background-color: green;
-    border-radius: 10px;
-    transform: translateY(-50%);
-}
-/*--------------------------------------------*/
 .main-player {
   display: flex;
   padding: 20px;
@@ -103,6 +14,13 @@
   display: flex;
   flex-direction: column;
   max-height: 120px;
+}
+.buttons {
+  display: none;
+}
+.cover-image {
+  width: 120px;
+  height: 120px;
 }
 .episode-basic-info {
   flex: 0;
@@ -147,6 +65,9 @@
   display: block;
   padding: 0;
 }
+.play-button::before {
+  content: none !important;
+}
 .backward-button {
   margin-right: 10px;
   flex: 0;
@@ -171,11 +92,76 @@
   align-items: center;
   font-size: 1.75em;
 }
-.progressbar {
+.progress-bar {
+  position: relative;
   flex: 1;
   height: 10px;
   background: blue;
 }
+.progress-bar-time-played {
+  display: inline-block;
+}
+.progress-bar-rail {
+  width: 100%;
+  height: 5px;
+  background-color: lightgray;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.progress-bar-loaded {
+  background-color: gray;
+  height: 100%;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.progress-bar-played {
+  background-color: #009;
+  height: 100%;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.progress-bar-played::after {
+  content: '';
+  position: absolute;
+  display: inline-block;
+  right: -8px;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  background-color: #009;
+  border-radius: 8px;
+  transform: translateY(-50%);
+}
+span.progress-bar-played::after {
+  content: '';
+  position: absolute;
+  display: inline-block;
+  right: -10px;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  background-color: green;
+  border-radius: 10px;
+  transform: translateY(-50%);
+}
+.time.progress-bar-time-played.time-played {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(calc(-50% + 1em + 5px));
+}
+.time.progress-bar-time-played.time-remaining {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(calc(-50% + 1em + 5px));
+}
+
   </style>
 
 <!-- Rivet.js is used here, instead of 'rv-...' we have 'pp-...' -->
@@ -205,7 +191,7 @@
     
         <div class="controls-advanced" style="flex: 1; display: flex; align-items: center;">
           <button class="backward-button" pp-title="translations.backward" pp-aria-label="translations.backward"></button>
-          <progressbar class="progressbar"></progressbar>
+          <progressbar class="progress-bar"></progressbar>
           <button class="forward-button" pp-title="translations.forward" pp-aria-label="translations.forward"></button>
           <!--
           <select class="speed-select" pp-title="translations.changePlaybackSpeed" pp-aria-label="translations.changePlaybackSpeed">
@@ -226,6 +212,8 @@
     </div>
   </div>
 
+  <!-- Re-implement/remove comment as soon we need these parts. For now the requested Bechtle
+        player design does not inlcude these elements.
   <div class="panels"></div>
 
   <div class="footer" pp-if="showSubscribeBar">
@@ -279,4 +267,5 @@
       &rsaquo;
     </a>
   </div>
+  -->
 </div>
